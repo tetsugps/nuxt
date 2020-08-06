@@ -1,0 +1,36 @@
+version: 2.1
+jorbs:
+ deploy_app:
+   working_directory: ~/project
+   docker:
+     - image: circleci/node:10-browsers
+   steps:
+     - checkout
+     - run:
+         name: node_modulesのインストール
+         command: |
+           yarn
+     - run:
+         name: テスト
+         command: |
+           yarn lint
+     - run:
+         name: ビルド
+         command: |
+           yarn run build
+     - run:
+         name: firebase-toolsのインストール
+         command: |
+           yarn add --dev firebase-tools
+     - run:
+         name: firebaseへデプロイ
+         command: |
+           ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+workflows:
+ version: 2.1
+ build-deploy:
+   jobs:
+     - deploy_app:
+         filters:
+           branches:
+             only: master
