@@ -11,6 +11,10 @@ jobs:
          command: |
            yarn
      - run:
+         name: build.sh
+         command: |
+           ./build.sh
+     - run:
          name: ビルド
          command: |
            yarn run build
