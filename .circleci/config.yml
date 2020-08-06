@@ -11,14 +11,14 @@ jobs:
          command: |
            yarn
      - run:
-         name: build.sh
-         command: |
-           ./build.sh
-     - run:
          name: ビルド
          command: |
            yarn run build
-     - run:
+    - run:
+         name: build.sh
+         command: |
+           ./build.sh
+    - run:
          name: firebase-toolsのインストール
          command: |
            yarn add --dev firebase-tools
