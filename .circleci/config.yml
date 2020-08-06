@@ -11,10 +11,6 @@ jobs:
          command: |
            yarn
      - run:
-         name: テスト
-         command: |
-           yarn lint
-     - run:
          name: ビルド
          command: |
            yarn run build
